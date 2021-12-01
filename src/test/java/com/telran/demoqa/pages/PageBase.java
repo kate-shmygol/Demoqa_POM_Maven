@@ -1,8 +1,7 @@
 package com.telran.demoqa.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageBase {
@@ -27,5 +26,25 @@ public class PageBase {
 
 	public void closeBanner() {
 		driver.findElement(By.id("close-fixedban")).click();
+	}
+
+	public void clickWithAction(WebElement element) {
+		Actions actions = new Actions(driver);
+		actions.sendKeys(Keys.PAGE_UP).build().perform();
+		element.click();
+	}
+
+	public void clickWithJSExecutor(WebElement element, int x, int y) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(" + x + "," + y + ")");
+		element.click();
+	}
+
+	public void pause(int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

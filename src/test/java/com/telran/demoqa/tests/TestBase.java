@@ -17,10 +17,12 @@ public class TestBase {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-		driver.get("https://demoqa.com/login");
+		driver.get("https://demoqa.com");
 	}
 
-	@AfterMethod
+
+
+	@AfterMethod (enabled = false)
 	public void tearDown() {
 		driver.quit();
 	}

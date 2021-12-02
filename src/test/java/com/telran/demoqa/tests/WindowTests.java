@@ -25,6 +25,18 @@ public class WindowTests extends TestBase {
 	@Test
 	public void newWindowTest() {
 		new WindowPage(driver).clickOnNewWindowButton();
-		Assert.assertTrue(new WindowPage(driver).getTextFromNewTab().contains("sample"));
+		Assert.assertTrue(new WindowPage(driver).getTextFromNewTab()
+				.contains("sample"));
 	}
+
+	@Test
+	public void newWindowMessageTest() throws InterruptedException {
+		new WindowPage(driver).clickOnNewWindowMessageButton();
+//		new WindowPage(driver).getTextFromNewWindow();
+
+//		Assert.assertTrue(new WindowPage(driver).getTextFromNewWindow()
+//				.contains("sharing"));
+	}
+
+
 }

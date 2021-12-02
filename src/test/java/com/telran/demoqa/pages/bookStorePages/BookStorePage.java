@@ -1,11 +1,12 @@
-package com.telran.demoqa.pages;
+package com.telran.demoqa.pages.bookStorePages;
 
+import com.telran.demoqa.pages.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class BookStorePage extends  PageBase {
+public class BookStorePage extends PageBase {
 
 	public BookStorePage(WebDriver driver) {
 		super(driver);

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-//		public WebDriver driver;
+//	public WebDriver driver;
 	public EventFiringWebDriver driver;
 
 	Logger logger = LoggerFactory.getLogger(TestBase.class);
@@ -64,6 +64,6 @@ public class TestBase {
 			new PageBase(driver).takeScreenshot();
 		}
 		logger.info("======================================");
-		driver.quit();
+//		driver.quit();
 	}
 }

@@ -1,20 +1,13 @@
 package com.telran.demoqa.pages;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class WindowPage extends PageBase {
 	public WindowPage(WebDriver driver) {
@@ -65,7 +58,7 @@ public class WindowPage extends PageBase {
 		System.out.println("Child window handle is" + s1);
 
 		for (String ChildWindow : driver.getWindowHandles()) {
-			if(!MainWindow.contentEquals(ChildWindow)) {
+			if (!MainWindow.contentEquals(ChildWindow)) {
 				driver.switchTo().window(ChildWindow);
 //				WebElement text = driver.findElement(By.xpath("//body"));
 				WebElement text = driver.findElement(By.id("sampleHeading"));

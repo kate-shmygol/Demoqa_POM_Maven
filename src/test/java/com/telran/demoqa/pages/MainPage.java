@@ -1,8 +1,6 @@
 package com.telran.demoqa.pages;
 
-import com.telran.demoqa.pages.PageBase;
 import com.telran.demoqa.pages.bookStorePages.BookStorePage;
-import com.telran.demoqa.tests.SelectMenuTests;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +13,7 @@ public class MainPage extends PageBase {
 		super(driver);
 	}
 
-	//	@FindBy(css = ".card:nth-child(6) h5")
+//	@FindBy(css = ".card:nth-child(6) h5")
 //	@FindBy(xpath = "//div[@class='category-cards']/div[6]")
 	@FindBy(xpath = "//div[@class='category-cards']/div[.='Book Store Application']")
 	WebElement bookStoreBtn;
@@ -45,6 +43,14 @@ public class MainPage extends PageBase {
 
 	public SidePanelPage getWidgets() {
 		clickWithJSExecutor(widgets, 0, 300);
+		return new SidePanelPage(driver);
+	}
+
+	@FindBy(xpath = "//div[@class='category-cards']/div[2]")
+	WebElement form;
+
+	public  SidePanelPage getForms() {
+		clickWithJSExecutor(form, 0, 300);
 		return new SidePanelPage(driver);
 	}
 }

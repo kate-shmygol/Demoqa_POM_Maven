@@ -1,7 +1,7 @@
 package com.telran.demoqa.tests;
 
-import com.telran.demoqa.data.DataProviders;
 import com.telran.demoqa.data.StudentData;
+import com.telran.demoqa.helpers.DataProviders;
 import com.telran.demoqa.pages.FormsPage;
 import com.telran.demoqa.pages.MainPage;
 import com.telran.demoqa.pages.SidePanelPage;

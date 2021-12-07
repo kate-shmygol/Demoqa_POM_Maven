@@ -1,11 +1,8 @@
 package com.telran.demoqa.tests;
 
+import com.telran.demoqa.helpers.MyListener;
 import com.telran.demoqa.pages.PageBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,30 +16,10 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-//	public WebDriver driver;
-	public EventFiringWebDriver driver;
-
 	Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-	public static class MyListener extends AbstractWebDriverEventListener {
-
-		Logger logger = LoggerFactory.getLogger(TestBase.class);
-
-		@Override
-		public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-			logger.info("Start search " + by);
-		}
-
-		@Override
-		public void afterFindBy(By by, WebElement element, WebDriver driver) {
-			logger.info(by + " found.");
-		}
-
-		@Override
-		public void onException(Throwable throwable, WebDriver driver) {
-			logger.error(throwable.toString());
-		}
-	}
+//	public WebDriver driver;
+	public EventFiringWebDriver driver;
 
 	@BeforeMethod
 	public void setUp(Method m, Object[] param) {
@@ -57,7 +34,6 @@ public class TestBase {
 
 	@AfterMethod
 	public void tearDown(ITestResult result) {
-//		logger.info("Stop test " + m.getName()); // in signature - 'Method m' (import java.lang.reflect.Method;)
 		if (result.isSuccess()) {
 			logger.info("PASSED: test method - " + result.getMethod().getMethodName());
 		} else {

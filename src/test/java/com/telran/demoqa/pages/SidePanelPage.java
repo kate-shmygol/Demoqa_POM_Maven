@@ -50,4 +50,12 @@ public class SidePanelPage extends PageBase {
 		click(practiceForm);
 		return new FormsPage(driver);
 	}
+
+	@FindBy(xpath = "//span[.='Droppable']")
+	WebElement droppable;
+
+	public DragAndDropPage selectDroppable() {
+		clickWithJSExecutor(droppable, 0, 500);
+		return new DragAndDropPage(driver);
+	}
 }

@@ -49,8 +49,16 @@ public class MainPage extends PageBase {
 	@FindBy(xpath = "//div[@class='category-cards']/div[2]")
 	WebElement form;
 
-	public  SidePanelPage getForms() {
+	public SidePanelPage getForms() {
 		clickWithJSExecutor(form, 0, 300);
+		return new SidePanelPage(driver);
+	}
+
+	@FindBy(xpath = "//h5[.='Interactions']")
+	WebElement interactions;
+
+	public SidePanelPage getInteractions() {
+		clickWithJSExecutor(interactions, 0, 300);
 		return new SidePanelPage(driver);
 	}
 }

@@ -28,4 +28,16 @@ public class DragAndDropTests extends TestBase {
 	public void dropByTest() {
 		new DragAndDropPage(driver).dragAndDropBy100();
 	}
+
+	@Test
+	public void dropAcceptTest() {
+		new DragAndDropPage(driver).dragAndDropAccept();
+		new DragAndDropPage(driver).dragAndDropNotAccept();
+	}
+
+//	@Test
+//	public void dropRevertTest() {
+//		new DragAndDropPage(driver).dragAndDropWillRevert();
+//		new DragAndDropPage(driver).dragAndDropNotRevert();
+//	}
 }

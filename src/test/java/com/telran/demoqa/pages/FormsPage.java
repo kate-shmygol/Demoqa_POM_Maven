@@ -1,12 +1,10 @@
 package com.telran.demoqa.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public class FormsPage extends PageBase {
 	public FormsPage(WebDriver driver) {
@@ -93,9 +91,9 @@ public class FormsPage extends PageBase {
 		} else if (os.startsWith("Linux")) {
 //			clearWebField(dateOfBirthBtn);
 //			selectAndDeleteTextViaKeyboard();
-			pause(2000);
+			pause(1000);
 			dateOfBirthBtn.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.CONTROL + Keys.DELETE));
-			pause(2000);
+			pause(1000);
 //			dateOfBirthBtn.click();
 //			dateOfBirthBtn.clear();
 //			dateOfBirthBtn.click();
@@ -103,12 +101,31 @@ public class FormsPage extends PageBase {
 //			clearWebField(dateOfBirthBtn);
 			dateOfBirthBtn.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
 		}
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("document.getElementById('dateOfBirthInput').value='23 Mar 1993';");
 //		jse.executeScript("document.getElementById('dateOfBirthInput').setAttribute('value', '23 Mar 1993')");
 //		dateOfBirthBtn.sendKeys(bDay);
-		pause(2000);
+		pause(1000);
 		dateOfBirthBtn.sendKeys(Keys.ENTER);
+		return this;
+	}
+
+	@FindBy(css = ".react-datepicker__month-select")
+	WebElement month;
+
+	@FindBy(css = ".react-datepicker__year-select")
+	WebElement year;
+
+	public FormsPage chooseDate(String mo, String ye, String day) {
+		clickWithJSExecutor(dateOfBirthBtn, 0, 200);
+		Select select = new Select(month); // HTML <select> tag
+		select.selectByVisibleText(mo);
+
+		Select select1 = new Select(year); // HTML <select> tag
+		select1.selectByVisibleText(ye);
+
+		driver.findElement(By.xpath("//div[@class='react-datepicker__week']//div[.='" + day + "']")).click();
+
 		return this;
 	}
 
@@ -158,6 +175,64 @@ public class FormsPage extends PageBase {
 	public FormsPage uploadFile(String path) {
 		chooseFile.sendKeys(path);
 		pause(1000);
+		return this;
+	}
+
+	@FindBy(id = "currentAddress")
+	WebElement addr;
+
+	public FormsPage typeAddress(String address) {
+		typeWithJSExecutor(addr, 0, 300, address);
+		return this;
+	}
+
+	@FindBy(id = "state")
+	WebElement state;
+
+	@FindBy(id = "react-select-3-input")
+	WebElement selectState;
+
+	public FormsPage inputState(String st) {
+		clickWithJSExecutor(state, 0, 300);
+		selectState.sendKeys(st);
+		selectState.sendKeys(Keys.ENTER);
+		return this;
+	}
+
+	@FindBy(id = "city")
+	WebElement city;
+
+	@FindBy(id = "react-select-4-input")
+	WebElement selectCity;
+
+	public FormsPage inputCity(String c) {
+		click(city);
+		selectCity.sendKeys(c);
+		selectCity.sendKeys(Keys.ENTER);
+		return this;
+	}
+
+	@FindBy(id = "submit")
+	WebElement submit;
+
+	public FormsPage clickOnSubmitButton() {
+		click(submit);
+		return this;
+	}
+
+	@FindBy(id = "example-modal-sizes-title-lg")
+	WebElement modalTitle;
+
+	@FindBy(id = "closeLargeModal")
+	WebElement closeBtn;
+
+	public String getTitleFormDialog() {
+		return modalTitle.getText();
+	}
+
+	public FormsPage closeSuccessDialog() {
+		closeBanner();
+		clickWithJSExecutor(closeBtn, 0, 300);
 		return this;
 	}
 }

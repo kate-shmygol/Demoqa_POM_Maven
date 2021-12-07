@@ -1,8 +1,11 @@
 package com.telran.demoqa.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class FormsPage extends PageBase {
@@ -59,20 +62,52 @@ public class FormsPage extends PageBase {
 		}
 	}
 
+	public void selectAndDeleteTextViaKeyboard() {
+		selectTextViaKeyboard(dateOfBirthBtn);
+		deleteViaKeyboard(dateOfBirthBtn);
+	}
+
+	public void deleteViaKeyboard(WebElement element) {
+		Actions builder = new Actions(driver);
+		builder.sendKeys(Keys.DELETE)
+				.release().perform();
+	}
+
+	public void selectTextViaKeyboard(WebElement element) {
+		Actions builder = new Actions(driver);
+		Action select = builder
+				.keyDown(Keys.CONTROL)
+				.sendKeys("a")
+				.keyUp(Keys.CONTROL)
+				.build();
+		select.perform();
+	}
+
 	public FormsPage typeOfDate(String bDay) {
+
 		clickWithJSExecutor(dateOfBirthBtn, 0, 300); //		click(dateOfBirthBtn);
 		String os = System.getProperty("os.name");
 		System.out.println("OS: " + os);
 		if (os.startsWith("Mac")) {
 			dateOfBirthBtn.sendKeys(Keys.chord(Keys.COMMAND, "a"));
 		} else if (os.startsWith("Linux")) {
-			clearWebField(dateOfBirthBtn);
-//			dateOfBirthBtn.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+//			clearWebField(dateOfBirthBtn);
+//			selectAndDeleteTextViaKeyboard();
+			pause(2000);
+			dateOfBirthBtn.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.CONTROL + Keys.DELETE));
+			pause(2000);
+//			dateOfBirthBtn.click();
+//			dateOfBirthBtn.clear();
+//			dateOfBirthBtn.click();
 		} else {
-			clearWebField(dateOfBirthBtn);
-//			dateOfBirthBtn.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+//			clearWebField(dateOfBirthBtn);
+			dateOfBirthBtn.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
 		}
-		dateOfBirthBtn.sendKeys(bDay);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("document.getElementById('dateOfBirthInput').value='23 Mar 1993';");
+//		jse.executeScript("document.getElementById('dateOfBirthInput').setAttribute('value', '23 Mar 1993')");
+//		dateOfBirthBtn.sendKeys(bDay);
+		pause(2000);
 		dateOfBirthBtn.sendKeys(Keys.ENTER);
 		return this;
 	}

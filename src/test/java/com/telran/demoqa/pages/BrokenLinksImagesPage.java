@@ -63,7 +63,6 @@ public class BrokenLinksImagesPage extends PageBase {
 
 		for (int index = 0; index < images.size(); index++) {
 			WebElement img = images.get(index);
-			img.getAttribute("src");
 			String imageURL = img.getAttribute("src");
 			System.out.println("URL of Image " + (index + 1) + " is: " + imageURL);
 			verifyLinks(imageURL);

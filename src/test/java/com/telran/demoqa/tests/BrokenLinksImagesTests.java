@@ -2,9 +2,7 @@ package com.telran.demoqa.tests;
 
 import com.telran.demoqa.pages.BrokenLinksImagesPage;
 import com.telran.demoqa.pages.MainPage;
-import com.telran.demoqa.pages.PageBase;
 import com.telran.demoqa.pages.SidePanelPage;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

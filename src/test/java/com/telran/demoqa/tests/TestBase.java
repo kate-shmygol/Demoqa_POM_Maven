@@ -41,6 +41,6 @@ public class TestBase {
 			new PageBase(driver).takeScreenshot();
 		}
 		logger.info("======================================");
-//		driver.quit();
+		driver.quit();
 	}
 }

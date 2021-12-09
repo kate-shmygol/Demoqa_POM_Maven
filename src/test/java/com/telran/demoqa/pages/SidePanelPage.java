@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import javax.tools.Tool;
+
 public class SidePanelPage extends PageBase {
 
 	public SidePanelPage(WebDriver driver) {
@@ -81,5 +83,13 @@ public class SidePanelPage extends PageBase {
 	public BrokenLinksImagesPage selectBrokenLinks() {
 		clickWithJSExecutor(selectBrokenLinksAndImages, 0, 700);
 		return new BrokenLinksImagesPage(driver);
+	}
+
+	@FindBy(xpath = "//span[.='Tool Tips']")
+	WebElement toolTips;
+
+	public ToolTipsPage selectToolTips() {
+		clickWithJSExecutor(toolTips, 0, 700);
+		return new ToolTipsPage(driver);
 	}
 }
